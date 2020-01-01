@@ -63,7 +63,18 @@
             }
         }
 
-        
+        function suddenDeath() {
+            let roundResult = playRound();
+            switch(roundResult[0]) {
+                case 'win':
+                    return `Wooooooooohoo!!! ${roundResult[1]} You take the game in a thrilling finish!`
+                case 'lose':
+                    return `Oof. ${roundResult[1]} You lose the game in a crushing defeat!`
+                case 'draw':
+                    console.log(`${roundResult[1]} We'll have to give it another go! Sudden death continues...`)
+                    return suddenDeath()
+            }
+        }
 
         function game() {
             const ROUNDS = 5;
