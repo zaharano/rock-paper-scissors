@@ -22,7 +22,51 @@
             }
         }
 
-        console.log(computerPlay())
+        function getInput() {
+            let input = prompt("What's it gonna be? Rock, paper, or scissors?").toLowerCase();
+            if (input === 'rock' || input === 'paper' || input === 'scissors')
+                return input;
+            else {
+                console.log("That doesn't appear to be a valid play. Enter rock, paper, or scissors.")
+                return getInput();
+            }
+        }
+        
+        // determines the outcome of a round. returns an array [result for player, result string for printing]
+        function playRound(playerSelection, computerSelection) {
+            let playerSelectionLowercase = playerSelection.toLowerCase();
+            if (playerSelectionLowercase === 'rock') {
+                if (computerSelection === 'rock') {
+                    return ['draw',"It's a draw! You both selected Rock."]
+                } else if (computerSelection === 'paper') {
+                    return ['lose',"You lose! Paper covers Rock."]
+                } else {
+                    return ['win',"You win! Rock crushes Scissors."]
+                }
+            } else if (playerSelectionLowercase === 'paper') {
+                if (computerSelection === 'rock') {
+                    return ['win',"You win! Paper covers Rock."]
+                } else if (computerSelection === 'paper') {
+                    return ['draw',"It's a draw! You both selected Paper."]
+                } else {
+                    return ['lose',"You lose! Scissors cut up Paper."]
+                }
+            } else {
+                if (computerSelection === 'rock') {
+                    return ['lose',"You lose! Rock crushes Scissors."]
+                } else if (computerSelection === 'paper') {
+                    return ['win',"You win! Scissors cut up Paper."]
+                } else {
+                    return ['draw',"It's a draw! You both selected Scissors."]
+                }
+            }
+        }
+
+
+
+        let playerSelection = getInput();
+        let computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection))
     </script>
 </body>
 </html>
