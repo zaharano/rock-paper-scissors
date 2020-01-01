@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        
+        function computerPlay() {
+            let picker = Math.floor(Math.random() * 3);
+
+            switch(picker) {
+                case 0:
+                    return 'rock';
+                case 1:
+                    return 'paper';
+                case 2:
+                    return 'scissors';
+            }
+        }
+
+        console.log(computerPlay())
+    </script>
+</body>
+</html>
