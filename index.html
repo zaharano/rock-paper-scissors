@@ -4,113 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <script>
-        
-        function computerPlay() {
-            let picker = Math.floor(Math.random() * 3);
+    <div id="overlay" class="hide">
+        <div class="container win-container">
+            <div id="win-dialog">You win!!!</div>
+            <div class="buttons">
+                <div id="reset" class="button">
+                    <p>Reset game</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container">
+        <div id="read-out">
+            
+        </div>
+        <div class="score-container">
+            <div>
+                <p>Your Score</p>
+                <div id="user-score">0</div>
+            </div>
+            <div>
+                <p>Draws</p>
+                <div id="draw-score">0</div>
+            </div>
+            <div>
+                <p>Computer Score</p>
+                <div id="computer-score">0</div>
+            </div>
+        </div>
+        <div class="buttons">
+            <div id="rock" class="button">
+                <p>Rock</p>
+            </div>
+            <div id="paper" class="button">
+                <p>Paper</p>
+            </div>
+            <div id="scissors" class="button">
+                <p>Scissors</p>
+            </div>
+        </div>
+    </div>
 
-            switch(picker) {
-                case 0:
-                    return 'rock';
-                case 1:
-                    return 'paper';
-                case 2:
-                    return 'scissors';
-            }
-        }
-
-        function getInput() {
-            let input = prompt("What's it gonna be? Rock, paper, or scissors?").toLowerCase();
-            if (input === 'rock' || input === 'paper' || input === 'scissors')
-                return input;
-            else {
-                console.log("That doesn't appear to be a valid play. Enter rock, paper, or scissors.")
-                return getInput();
-            }
-        }
-
-        // determines the outcome of a round. returns an array [result for player, result string for printing]
-        function playRound() {
-            let playerSelection = getInput();
-            let computerSelection = computerPlay();
-            if (playerSelection === 'rock') {
-                if (computerSelection === 'rock') {
-                    return ['draw',"It's a draw! You both selected Rock."]
-                } else if (computerSelection === 'paper') {
-                    return ['lose',"You lose! Paper covers Rock."]
-                } else {
-                    return ['win',"You win! Rock crushes Scissors."]
-                }
-            } else if (playerSelection === 'paper') {
-                if (computerSelection === 'rock') {
-                    return ['win',"You win! Paper covers Rock."]
-                } else if (computerSelection === 'paper') {
-                    return ['draw',"It's a draw! You both selected Paper."]
-                } else {
-                    return ['lose',"You lose! Scissors cut up Paper."]
-                }
-            } else {
-                if (computerSelection === 'rock') {
-                    return ['lose',"You lose! Rock crushes Scissors."]
-                } else if (computerSelection === 'paper') {
-                    return ['win',"You win! Scissors cut up Paper."]
-                } else {
-                    return ['draw',"It's a draw! You both selected Scissors."]
-                }
-            }
-        }
-
-        function suddenDeath() {
-            let roundResult = playRound();
-            switch(roundResult[0]) {
-                case 'win':
-                    return `Wooooooooohoo!!! ${roundResult[1]} You take the game in a thrilling finish!`
-                case 'lose':
-                    return `Oof. ${roundResult[1]} You lose the game in a crushing defeat!`
-                case 'draw':
-                    console.log(`${roundResult[1]} We'll have to give it another go! Sudden death continues...`)
-                    return suddenDeath()
-            }
-        }
-
-        function game() {
-            const ROUNDS = 5;
-            let playerScore = 0, 
-                computerScore = 0;
-                
-            for (let i = 0; i < ROUNDS; i++)
-            {
-                let roundResult = playRound();
-                console.log(roundResult[1]);
-                switch(roundResult[0]) {
-                    case 'win':
-                        playerScore++;
-                        break;
-                    case 'lose':
-                        computerScore++;
-                        break;
-                }
-            }
-
-            if (playerScore > computerScore) {
-                console.log(`You won the game! You took ${playerScore} rounds to the computer's ${computerScore}.`);
-                return;
-            } else if (computerScore > playerScore) {
-                console.log(`You lost the game! The computer took ${computerScore} rounds to your ${playerScore}.`);
-                return;
-            } else {
-                console.log(`A draw! You and the computer both took ${playerScore}. Time for s-s-s-s-sudden death!`)
-                console.log(suddenDeath())
-                return;
-            }
-        }
-
-
-        
-        
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
